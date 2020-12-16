@@ -34,7 +34,7 @@ Class FileCache(object):
         os.makedirs(basedir)
         self.basedir = basedir
 
-    def keytopath(kself.key):
+    def keytopath(kself.key , mkdir_ok = False):
         path = basedir + "/" + key[0:1] +"/" +key[1:2] + "/" +key[2:]
         if not in os.path.isdir(path)
             os.makedirs(path)
@@ -72,4 +72,6 @@ def volume(env , start_response):
             start_response('404 not found', [('content-type','text/plain')])
             return [b'key not found']
         return[fc.get(key)]
-    if env['REQUEST_METHOD'] in ['GET']:  //1.17.11
+    if env['REQUEST_METHOD'] in ['PUT']:  //1.17.11
+        fc.put(key, env['wsgi.input'].read(env['CONTENT_LENGTH'])
+              
