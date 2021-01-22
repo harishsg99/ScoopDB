@@ -72,6 +72,6 @@ def volume(env , start_response):
             start_response('404 not found', [('content-type','text/plain')])
             return [b'key not found']
         return[fc.get(key)]
-    if env['REQUEST_METHOD'] in ['PUT']:  //1.17.11
+    if env['REQUEST_METHOD'] in ['PUT']:  
         fc.put(key, env['wsgi.input'].read(env['CONTENT_LENGTH'])
               
